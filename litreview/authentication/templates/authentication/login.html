@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main id="form-container">
+    <h2>Connexion</h2>
+    <form class="custom-form" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button class="button" type="submit">Se connecter</button>
+        <p>Pas encore de compte ?</p>
+        <a class="form-link" href="{% url 'signup' %}">S'inscrire</a>
+    </form>
+</main>
+{% endblock content %}
