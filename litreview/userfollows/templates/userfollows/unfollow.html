@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<main id="article_container">
+    <article>
+        <form class="custom-form" method="post">
+            <h2>Êtes-vous sûr(e) de vouloir vous désabonner de {{ object.followed_user }} ?</h2>
+            {% csrf_token %}
+            <button class="button" type="submit">Confirmer</button>
+            <button class="button" type="reset"><a href="{% url 'follow' %}">Annuler</a></button>
+        </form>
+    </article>
+</main>
+
+{% endblock content %}
