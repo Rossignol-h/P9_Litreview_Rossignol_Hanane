@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<article id="article_container">
+    <form class="form" method="post" enctype="multipart/form-data">
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Modifier votre critique</h2>
+        </header>
+
+        <main>
+            <div class="neumorph">
+                <input class="form-input" type="text" name="headline" value="{{ review.headline }}" maxlength="128"
+                    required id="id_headline">
+            </div>
+            <div class="neumorph">
+                <textarea class="form-textarea" name="body" cols="40" rows="10" maxlength="8192" id="id_body">
+                        {{ review.body }}</textarea>
+            </div>
+            <div>
+                {{ form.rating }}
+            </div>
+            {% csrf_token %}
+            <button class="form-button" type="submit">Modifier</button>
+        </main>
+    </form>
+</article>
+
+{% endblock content %}

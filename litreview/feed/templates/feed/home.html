@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load litreview_extras %}
+{% block content %}
+
+<section class="create">
+    <h2> Bienvenue {{ request.user }}</h2>
+    <button class="button">
+        <a href="{% url 'create_ticket' %}">Demander une critique</a>
+    </button>
+    <button class="button">
+        <a href="{% url 'create_review' %}">Créer une critique</a>
+    </button>
+</section>
+
+<main id="article_container">
+    <h2>Les dernières demande de critique</h2>
+    {% for instance in posts %}
+    {% if instance|model_type == "Ticket" %}
+    {% include "ticket/ticket_snippet.html" with ticket=instance %}
+    {% elif instance|model_type == "Review" %}
+    {% include "review/review_snippet.html" with review=instance %}
+    {% endif %}
+    {% endfor %}
+    {% include 'pagination_snippet.html' %}
+</main>
+
+{% endblock content %}

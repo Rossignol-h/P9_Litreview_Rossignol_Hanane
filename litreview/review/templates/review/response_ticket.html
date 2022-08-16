@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div id="article_container">
+    <h2> Vous êtes en train de poster en réponse à {{ticket.user}} </h2>
+    <div class="response_wrapper">
+        {% include 'ticket/ticket_snippet.html' %}
+        <form class="custom-form" method="post">
+            <h3>Critique</h3>
+            {{ form }}
+            {% csrf_token %}
+            <button class="button" type="submit">Envoyer</button>
+            <a class="button" role="button" href="{% url 'home' %}">Annuler</a>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

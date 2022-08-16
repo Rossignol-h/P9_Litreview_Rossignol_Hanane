@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div id="article_container">
+    <h2>Créer votre critique</h2>
+    <form class="custom-form" method="post" enctype="multipart/form-data">
+        {{ forms.form_ticket }}
+        <h3>Critique</h3>
+        {{ forms.form_review }}
+        {% csrf_token %}
+        <button class="button" type="submit">Envoyer</button>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<main id="article_container">
+    <article>
+        <form class="custom-form" method="post">
+            <h2>Supprimer votre critique</h2>
+            <p>Supprimer cette critique ?
+                {{ object.title }}
+            </p>
+            {% csrf_token %}
+            <button class="button" type="submit">Confirmer</button>
+            <a class="button" role="button" href="{% url 'posts' %}">Annuler</a>
+        </form>
+    </article>
+</main>
+
+{% endblock content %}
