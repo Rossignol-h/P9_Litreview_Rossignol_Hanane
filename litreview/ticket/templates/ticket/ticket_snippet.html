@@ -1,0 +1,48 @@
+{% load litreview_extras %}
+{% load static %}
+{% load tz %}
+
+<article class="card">
+    <header class="card-header">
+        {% if ticket.image == '' %}
+        <img src="{% static 'default.jpg' %}" alt="couverture de livre">
+        {% else %}
+        <img src="{{ticket.image.url}}" alt="couverture de livre" loading="lazy">
+        {% endif %}
+    </header>
+
+    <section class="card-content">
+        <span class="type">ticket</span>
+        <h3>{{ticket.title}}</h3>
+        <p>{{ticket.description}}</p>
+    </section>
+
+    <footer class="card-footer">
+        <div class="author">
+            <img src="{% static 'profil-w.jpg' %}" alt="photo de profil" class="avatar" />
+            <p>{% get_poster_display ticket.user %} demandé une critique</p>
+        </div>
+        {% timezone "Europe/Paris" %}
+        <date>{{ ticket.time_created|get_posted_at_display }}</date>
+        {% endtimezone %}
+    </footer>
+
+    {% if home_page and not ticket.has_review %}
+    <div>
+        <button type="button" class="button">
+            <a href="{% url 'response_ticket' ticket.id %}">
+                Créer une critique
+            </a>
+        </button>
+    </div>
+    {% endif %}
+
+    {% if request.resolver_match.url_name == "posts" %}
+    <div class="buttons-wrapper">
+        <button type="button" class="button"><a href="{% url 'edit_ticket' ticket.id %}">
+                Modifier </a></button>
+        <button type="button" class="button"><a href="{% url 'delete_ticket' ticket.id %}">
+                Supprimer </a></button>
+    </div>
+    {% endif %}
+</article>

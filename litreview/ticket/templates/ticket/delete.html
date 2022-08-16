@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<main>
+    <article id="article_container">
+        <form class="form" method="post">
+            <h2 class="form-title">Supprimer votre ticket</h2>
+            <div class="form-fields">
+                <p>Voulez vous vraiment supprimer ce ticket ?
+                    {{ object.title }}
+                </p>
+                {% csrf_token %}
+                <button class="form-button" type="submit">Confirmer</button>
+                <a class="form-button" role="button" href="{% url 'posts' %}">Annuler</a>
+            </div>
+        </form>
+    </article>
+</main>
+
+{% endblock content %}

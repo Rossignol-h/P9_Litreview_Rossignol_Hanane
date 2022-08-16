@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<main>
+    <article id="article_container">
+        <form class="form" method="post" enctype="multipart/form-data">
+            <h2 class="form-title">Créer un ticket</h2>
+            <div class="form-fields">
+                {{ form }}
+                {% csrf_token %}
+                <button class="form-button" type="submit">Envoyer</button>
+            </div>
+        </form>
+    </article>
+</main>
+
+{% endblock content %}

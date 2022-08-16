@@ -30,6 +30,7 @@
             <ul class="nav-item">
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'follow' %}">Abonnements</a></li>
+                <li><a href="{% url 'posts' %}">Posts</a></li>
                 <li><a href="{% url 'logout' %}">Deconnexion</a></li>
                 {% endif %}
             </ul>

@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+<article id="article_container">
+    <form class="form" method="post" enctype="multipart/form-data">
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Modifier votre demande</h2>
+        </header>
+        <main>
+            <div class="form-fields">
+                {{ form }}
+                {% csrf_token %}
+                <button class="form-button" type="submit">Modifier</button>
+            </div>
+        </main>
+    </form>
+</article>
+
+{% endblock content %}

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'authentication',
     'userfollows',
+    'post',
+    'ticket',
 ]
 
 MIDDLEWARE = [
