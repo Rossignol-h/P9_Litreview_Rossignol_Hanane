@@ -1,4 +1,5 @@
 {% load litreview_extras %}
+{% load avatar_tags %}
 {% load static %}
 
 <article class="card">
@@ -9,7 +10,7 @@
     <section class="card-content">
         <div class="author">
             <span class="type">Critique</span>
-            <img src="{% static 'profil-w.jpg' %}" alt="photo de profil" class="avatar" loading="lazy" />
+            {% avatar user class="avatar" id="user_avatar" %}
             <p>{% get_poster_display review.user %} publié une critique</p><br>
         </div>
         <date>{{ review.time_created|get_posted_at_display }}</date>

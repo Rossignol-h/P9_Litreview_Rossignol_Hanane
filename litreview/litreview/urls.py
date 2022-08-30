@@ -1,6 +1,7 @@
 from django.conf.urls.static import static
-from django.conf import settings
+from django.conf.urls import include
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path
 
 # utiliser la vue generique de login
@@ -22,6 +23,7 @@ urlpatterns = [
         redirect_authenticated_user=True),
         name='login'),
     path('signup/', SignUpView.as_view(), name='signup'),
+    path('avatar/', include('avatar.urls')),
     path('logout/', logout_view, name='logout'),
 
     # ================================================================ FEED
