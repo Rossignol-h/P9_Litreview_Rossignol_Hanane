@@ -21,7 +21,9 @@
     {% include "review/review_snippet.html" with review=instance %}
     {% endif %}
     {% endfor %}
+    {% if is_paginated %}
     {% include 'pagination_snippet.html' %}
+    {% endif %}
 </main>
 
 {% endblock content %}

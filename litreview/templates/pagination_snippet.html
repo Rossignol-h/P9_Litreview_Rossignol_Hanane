@@ -1,0 +1,33 @@
+<div class="pagination-container">
+
+    {% comment %} link to previous and first page {% endcomment %}
+    {% if page_obj.has_previous %}
+    <a href="?page=1">
+        <span class="pagination-chevron">&laquo;</span>
+    </a>
+    <a href="?page={{ page_obj.previous_page_number }}">
+        <span class="pagination-chevron">&#8249</span>
+    </a>
+    {% endif %}
+
+    {% comment %} for add active class to curent page {% endcomment %}
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a href="?page={{ num }}" class="active">{{ num }}</a>
+
+    {% comment %} display previous pages from the current page {% endcomment %}
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% comment %} link to to next and last page {% endcomment %}
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">
+            <span class="pagination-chevron">&#8250</span>
+        </a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">
+            <span class="pagination-chevron">&raquo;</span>
+        </a>
+        {% endif %}
+
+</div>

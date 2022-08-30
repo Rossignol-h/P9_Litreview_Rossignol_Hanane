@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load litreview_extras %}
+{% block content %}
+
+<main id="article_container">
+    <h2>Vos posts</h2>
+    {% for instance in posts %}
+    {% if instance|model_type == "Ticket" %}
+    {% include 'ticket/ticket_snippet.html' with ticket=instance %}
+    {% elif instance|model_type == "Review" %}
+    {% include 'review/review_snippet.html' with review=instance %}
+    {% endif %}
+    {% empty %}
+    <p class="empty">
+        Vous n'avez pas encore de posts.
+    </p>
+    {% endfor %}
+    {% if is_paginated %}
+    {% include 'pagination_snippet.html' %}
+    {% endif %}
+</main>
+
+{% endblock content %}

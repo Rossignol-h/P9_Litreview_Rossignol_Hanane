@@ -1,5 +1,5 @@
-from django.utils import timezone
 from django import template
+from django.utils import timezone
 
 SECOND = 0
 MINUTE = 60
@@ -24,9 +24,18 @@ def get_poster_display(context, user):
         return 'Vous avez '
     return f"{user.username} a "
 
+@register.simple_tag(takes_context=True)
+def get_response_user(context, user):
+    """ Displays the right message 
+        if the author is the current user or not """
+
+    if user == context['user']:
+        return 'Vous répondez à votre demande '
+    return f"Vous êtes en train de poster en réponse à {user.username} "
+
 @register.filter
 def get_posted_at_display(posted_at):
-    """ Displays a nicer date and time for publications """
+    """ Displays a nicer date and time for posts """
 
     seconds_ago = (timezone.now() - posted_at).total_seconds()
     if seconds_ago <= MINUTE:
