@@ -1,0 +1,125 @@
+/* main font */
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500;600;700&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* handwriting font */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+/* ------------------------------------------------------------------- RESET */
+* {
+    letter-spacing: -0.02rem;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    font-family: 'Mulish';
+    color: #D6E2E0;
+    margin-block: 0;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --dark-color: #222d25;
+    --medium-color: #445C4C;
+    --light-color: #508068;
+    --extralight-color: #8AB6A9;
+    --contrast-color: #c21e56;
+}
+
+html {
+    font-size: 15px;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--medium-color);
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100vh;
+    line-height: 1.3;
+}
+
+a,
+li,
+ul {
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}
+
+button {
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+textarea,
+input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.1rem;
+    padding: 10px 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* for delete all span added automatically by Django in forms */
+.helptext {
+    display: None;
+}
+
+label:not(.input-container *) label:not(.label-image *) {
+    display: None;
+}
+
+/* ==================================== PAGINATION */
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    border-radius: 0.6rem;
+    background: #ffffff;
+    box-shadow: 0 0.8rem 2rem rgba(#060606, 0.05);
+    padding: 0px 10px;
+    max-width: max-content;
+}
+
+.pagination-container a,
+.pagination-chevron,
+.pagination-dots {
+    color: var(--medium-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.3rem;
+    font-size: 1.1rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.4rem;
+}
+
+.pagination-container a:hover {
+    color: var(--contrast-color);
+}
+
+.pagination-container a.active {
+    color: #ffffff;
+    background: var(--extralight-color);
+    font-weight: 600;
+}
+
+.pagination-chevron,
+.pagination-dots {
+    font-weight: 700;
+}
+
+.pagination-dots {
+    cursor: initial;
+}
+
+.pagination-chevron {
+    font-size: 1.4rem;
+}

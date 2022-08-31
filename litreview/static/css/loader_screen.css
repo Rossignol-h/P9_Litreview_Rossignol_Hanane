@@ -1,0 +1,159 @@
+@import url("base.css");
+
+/* ----------------------------------------------------- LOADING */
+
+.loading__screen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-color);
+    position: fixed;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: loading-out 4.2s ease-out forwards;
+}
+
+#loading__logo {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+#L {
+    position: absolute;
+    animation: slideInLeft 2.4s linear forwards;
+}
+
+#R {
+    position: absolute;
+    animation: slideInRight 2.4s linear forwards;
+}
+
+.letters {
+    width: 90%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 85%;
+    left: 50%;
+    text-align: center;
+}
+
+
+.letters span {
+    display: inline-block;
+    font-size: 4vw;
+    font-weight: 700;
+    letter-spacing: 0.5vw;
+    text-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: translateY(-100vh);
+    animation: fall 1.6s forwards;
+}
+
+
+.letters span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.letters span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.letters span:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.letters span:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.letters span:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.letters span:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.letters span:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.letters span:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+/* ---------------------------------------- loader animation */
+@keyframes fall {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes slideInRight {
+    0% {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        display: none;
+        opacity: 0.8;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        display: none;
+        opacity: 0.8;
+    }
+}
+
+@keyframes loading-out {
+    0% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        z-index: -1;
+        display: none;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,199 @@
+@import url("base.css");
+
+
+#form-container {
+    position: absolute;
+    top: 55%;
+    right: 70%;
+    transform: translate(50%, -50%);
+}
+
+.form {
+    background: var(--medium-color);
+    border-radius: 20px;
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.7);
+    max-width: 450px;
+    padding: 1.5rem;
+    min-height: max-content;
+    width: 420px;
+    position: relative;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    margin-bottom: 20px;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+    padding: 1rem;
+}
+
+.form-logo {
+    background: url("../logo.svg");
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow:
+        /* offset */
+        0px 0px 0px 5px var(--medium-color),
+        /*bottom right */
+        8px 8px 15px #314237,
+        /* top left */
+        -8px -8px 15px #62856e;
+}
+
+.form-fields {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+}
+
+.form-input {
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: inset 2px 2px 5px #314237, inset -5px -5px 10px #62856e;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus-within {
+    box-shadow: inset 1px 1px 2px #314237,
+        inset -1px -1px 2px #62856e;
+}
+
+.form-icon {
+    height: 25px;
+    margin: 0 10px -5px 25px;
+}
+
+.form-button {
+    background-image: linear-gradient(to right, var(--light-color) 0%, #8AB6A9 51%, var(--light-color) 100%);
+    margin: 1rem;
+    padding: 10px 40px;
+    background-size: 200% auto;
+    box-shadow: 5px 5px 8px #456e5a;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.form-button:hover {
+    background-position: top center;
+    color: #fff;
+    box-shadow: 2px 3px 5px var(--light-color);
+    text-decoration: none;
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.form-link {
+    color: #fff;
+    padding-top: 20px;
+    font-size: small;
+}
+
+.error_container {
+    display: block;
+}
+
+.error {
+    text-align: center;
+    color: rgb(221, 25, 25);
+    padding: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* ================================================ upload image*/
+
+.form-image {
+    margin-bottom: 20px
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.django-upload {
+    display: none;
+}
+
+.label-image {
+    cursor: pointer;
+    color: var(--extralight-color);
+    font-weight: bold;
+}
+
+.label-image:hover {
+    color: #34c59a;
+}
+
+.form-icon__img {
+    height: 35px;
+    margin: 0 10px -13px 30px;
+}
+
+/* ================================================= RADIO RATING CHECKBOX */
+
+.rating {
+    max-width: 14em;
+    padding: 0 1.5em;
+}
+
+.rating:not(:checked)>input {
+    position: absolute;
+    display: none;
+    opacity: 0;
+}
+
+.rating:not(:checked)>label {
+    float: right;
+    width: 1em;
+    padding: 0 .1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 2;
+    color: #ddd;
+}
+
+.rating:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rating>input:checked~label {
+    /* when selected and not hover  */
+    color: rgb(218, 215, 32);
+    text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    /* on hover */
+    color: rgb(228, 224, 27);
+    text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked+label:hover~label,
+.rating>input:checked~label:hover,
+.rating>input:checked~label:hover~label,
+.rating>label:hover~input:checked~label {
+    /* when selected and hover */
+    color: rgb(228, 224, 27);
+    text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.rating>label:active {
+    /* on click */
+    position: relative;
+    top: 2px;
+    left: 2px;
+}

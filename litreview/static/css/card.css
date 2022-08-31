@@ -1,0 +1,362 @@
+@import url("base.css");
+
+#article_container {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background: url('../swirl_pattern.webp') left top repeat;
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: minmax(300px, max-content) 80px 80px;
+    margin: 50px;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    animation: slide-in-bottom 1s ease-out forwards;
+}
+
+.card.response_ticket {
+    grid-template-rows: 300px;
+    animation: none;
+}
+
+/* ================================================ CARD HEADER */
+
+.card-header {
+    grid-column: 1/2;
+    margin: 10px;
+}
+
+.card-header img {
+    width: 100%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 300px;
+    max-height: 300px;
+    border: solid 2px #fff;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    padding: 15px 10px;
+}
+
+/* ================================================ CARD CONTENT*/
+
+.card-content {
+    grid-column: 2/-1;
+    grid-row: 1/2;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-top-right-radius: 10px;
+    height: 300px;
+    max-height: max-content;
+    justify-self: center;
+    align-items: center;
+
+}
+
+.card-content h3 {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--contrast-color);
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.card-content p {
+    font-family: 'Caveat', cursive;
+    color: #1e2f24;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 1.5rem 0.5rem;
+}
+
+.ticket_title {
+    color: #e40d0d;
+    font-size: 1rem;
+}
+
+.type {
+    background-color: #8AB6A9;
+    color: #222d25;
+    font-weight: 600;
+    font-size: 10px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    top: -18px;
+    position: relative;
+    box-shadow: inset 1px 1px 2px #a4adac, inset -1px -1px 2px #effaf8;
+}
+
+.rating-container {
+    text-align: center;
+}
+
+.review-star {
+    color: rgb(230, 183, 42);
+    font-size: 1.5rem;
+}
+
+.empty {
+    padding: 20px 5px;
+    text-align: center;
+}
+
+/* ================================================ CARD FOOTER */
+
+.card-footer {
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    display: grid;
+    padding: 1rem;
+}
+
+.card-footer__review {
+    background-color: var(--extralight-color);
+    padding: 30px 20px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.card-footer__review h3 {
+    color: #fff;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+}
+
+.author p {
+    font-weight: 700;
+    font-size: 14px;
+    color: #334237;
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+date {
+    justify-self: right;
+    font-size: 12px;
+    color: var(--medium-color);
+}
+
+.buttons-wrapper {
+    grid-row: 3/-1;
+    grid-column: 1/-1;
+    justify-self: center;
+    align-items: center;
+}
+
+/* ================================================================ FOLLOW SECTION */
+
+.follow-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.card-follow {
+    margin: 50px;
+    min-width: 400px;
+    max-height: max-content;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    background-color: var(--medium-color);
+    opacity: 0;
+    animation: slide-in-bottom 1s ease-out forwards;
+}
+
+.card-follow__header {
+    text-align: center;
+}
+
+.card-follow__header img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 300px;
+    max-height: 300px;
+}
+
+.type__follow {
+    background-color: #fff;
+    text-align: center;
+}
+
+.card-follow__content {
+    padding-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.card-follow__content ul {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    cursor: auto;
+}
+
+.card-follow__content li {
+    font-size: 1.1rem
+}
+
+.follow-fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.follow-input {
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.follow-button {
+    border-radius: 8px;
+    line-height: 0;
+    width: 68px;
+    height: 58px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    font-weight: bold;
+    box-shadow: -5px -5px 10px #5a7964, 5px 5px 10px #324338;
+    transition: all 0.2s ease-in-out;
+}
+
+.follow-button:hover {
+    box-shadow: -2px -2px 5px #5a7964, 2px 2px 5px #324338;
+}
+
+.follow-button:active {
+    box-shadow: inset 1px 1px 2px #324338, inset -1px -1px 2px #5a7964;
+}
+
+.follow-button img {
+    height: 25px;
+}
+
+.follow_style {
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 2px #314237,
+        inset -1px -1px 2px #62856e;
+}
+
+.follow_style li {
+    text-align: left;
+    padding-top: 10px;
+    cursor: auto;
+}
+
+.follow_avatar {
+    float: left;
+    margin-right: 10px;
+}
+
+/* ========================================= READ MORE--LESS */
+
+.full-content.active,
+.half-content {
+    display: block;
+    width: 100%;
+}
+
+.full-content,
+.half-content.active {
+    display: none;
+}
+
+.show-hide-btn.active {
+    display: none;
+}
+
+.show-hide-btn {
+    border-radius: 8px;
+    color: var(--contrast-color);
+    line-height: 0;
+    width: 70px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    font-weight: bold;
+    box-shadow: -5px -5px 10px var(--light-shadow), 5px 5px 10px var(--dark-shadow);
+    transition: all 0.2s ease-in-out;
+}
+
+/* ====================================================== DELETE CARD */
+
+.delete {
+    height: 260px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: 100px 50px 60px;
+    font-weight: bold;
+}
+
+.delete-title {
+    color: #62856e;
+    font-size: 1.2rem;
+    justify-self: center;
+    align-self: center;
+    grid-row: 1/2;
+}
+
+.delete-p {
+    color: var(--contrast-color);
+    font-size: 1.2rem;
+    text-align: center;
+    grid-row: 2/3;
+}
+
+.delete-btn {
+    margin: 15px 8px;
+    font-size: 1rem;
+}
+
+/* ===========================================  CREATE TICKET-REVIEW HOMEPAGE */
+
+.create {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width : 320px) and (max-width : 768px) {
+    .create {
+        flex-direction: column;
+    }
+}
+
+/* ========================================== ANIMATION */
+
+@keyframes slide-in-bottom {
+    0% {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
