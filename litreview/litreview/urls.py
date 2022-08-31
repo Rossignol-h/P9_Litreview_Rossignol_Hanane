@@ -7,14 +7,15 @@ from django.urls import path
 # utiliser la vue generique de login
 from django.contrib.auth.views import LoginView
 from authentication.views import SignUpView, logout_view
-from ticket.views import CreateTicket, EditTicket, DeleteTicket
 from review.views import CreateReview, EditReview, DeleteReview, Response
-from post.views import Post
-from feed.views import Home
+from ticket.views import CreateTicket, EditTicket, DeleteTicket
 from userfollows.views import Follow, UnFollow
+from feed.views import Home
+from post.views import Post
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+
+    path('admin/', admin.site.urls),
 
     # ================================================================ LOGIN-SIGNUP
 
@@ -26,8 +27,9 @@ urlpatterns = [
     path('avatar/', include('avatar.urls')),
     path('logout/', logout_view, name='logout'),
 
-    # ================================================================ FEED
+    # ================================================================ FLUX
 
+    path('home/1', Home.as_view(), name='home1'),
     path('home/', Home.as_view(), name='home'),
     path('create_ticket/', CreateTicket.as_view(), name='create_ticket'),
     path('create_review/', CreateReview.as_view(), name='create_review'),
@@ -41,7 +43,6 @@ urlpatterns = [
     path('edit_review/<int:pk>/edit/', EditReview.as_view(), name='edit_review'),
     path('delete_review/<int:pk>/delete/', DeleteReview.as_view(), name='delete_review'),
 
-
     # ================================================================ USERFOLLOW
 
     path('follow/', Follow.as_view(), name='follow'),
@@ -53,4 +54,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
-

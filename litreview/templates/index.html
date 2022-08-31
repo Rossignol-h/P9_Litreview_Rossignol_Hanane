@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="LITReview est une application web permettant
-        de demander ou publier des critiques de livres ou d’articles." />
+            de demander ou publier des critiques de livres ou d’articles." />
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="LITReview est une application web permettant
-        de demander ou publier des critiques de livres ou d’articles." />
+            de demander ou publier des critiques de livres ou d’articles." />
 
     <!-- Open Graph data -->
     <meta property="og:title" content="LITReview" />
@@ -18,14 +20,28 @@
     <meta property="og:url" content="https://rossignol-h.github.io/" />
     <meta property="og:image" content="http://example.com/image.jpg" />
     <meta property="og:description" content="LITReview est une application web permettant
-        de demander ou publier des critiques de livres ou d’articles." />
+            de demander ou publier des critiques de livres ou d’articles." />
+
+    <!-- Customize css -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/loader_screen.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/card.css' %}?{% now 'U' %}">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}" />
 
     <title>LITReview</title>
 </head>
 
 <body>
+    {% if "/home/1" == request.get_full_path %}
+    {% include "authentication/loader.html" %}
+    {% endif %}
     <header class="index-header">
         <nav class="nav-container">
+            <img class="logo" src="{% static 'logo.svg' %}" alt="logo LITReview" />
             <h1>LITReview</h1>
             <ul class="nav-item">
                 {% if user.is_authenticated %}
@@ -33,19 +49,15 @@
                 <li><a href="{% url 'follow' %}">Abonnements</a></li>
                 <li><a href="{% url 'posts' %}">Posts</a></li>
                 <li><a href="{% url 'logout' %}">Deconnexion</a></li>
-                {% endif %}
             </ul>
         </nav>
         <figure>
-            <blockquote>
-                <p>Lire, c’est voyager<br> Voyager, c’est lire.</p>
-                <figcaption>Victor Hugo</figcaption>
-            </blockquote>
         </figure>
-
     </header>
     {% block content %}
     {% endblock %}
+    {% endif %}
+
 </body>
 
 </html>
