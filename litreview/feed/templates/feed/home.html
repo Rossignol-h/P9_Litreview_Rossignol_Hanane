@@ -3,17 +3,17 @@
 {% block content %}
 
 <section class="create">
-    <h2> Bienvenue {{ request.user }}</h2>
-    <button class="button">
+    {% comment %} <h2> Bienvenue {{ request.user }}</h2> {% endcomment %}
+    <button class="form-button">
         <a href="{% url 'create_ticket' %}">Demander une critique</a>
     </button>
-    <button class="button">
+    <button class="form-button">
         <a href="{% url 'create_review' %}">Créer une critique</a>
     </button>
 </section>
 
 <main id="article_container">
-    <h2>Les dernières demande de critique</h2>
+    <h2>Les dernières publications</h2>
     {% for instance in posts %}
     {% if instance|model_type == "Ticket" %}
     {% include "ticket/ticket_snippet.html" with ticket=instance %}

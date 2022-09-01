@@ -33,7 +33,6 @@ class Home(LoginRequiredMixin, ListView):
 
             return posts                                                 
 
-
 # ============================================== FUNCTIONS
 
 def get_users_subscriptions(user: User) -> List:
