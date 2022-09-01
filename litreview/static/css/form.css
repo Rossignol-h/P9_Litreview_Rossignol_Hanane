@@ -9,7 +9,7 @@
 }
 
 .form {
-    background: var(--medium-color);
+    background: #445c4c;
     border-radius: 20px;
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.7);
     max-width: 450px;
@@ -45,7 +45,7 @@
     border-radius: 50%;
     box-shadow:
         /* offset */
-        0px 0px 0px 5px var(--medium-color),
+        0px 0px 0px 5px #445c4c,
         /*bottom right */
         8px 8px 15px #314237,
         /* top left */
@@ -84,13 +84,14 @@ input.auth-input,
     padding: 10px 5px;
 }
 
+
 .form-icon {
     height: 25px;
     margin: 0 10px -5px 25px;
 }
 
 .form-button {
-    background-image: linear-gradient(to right, var(--light-color) 0%, #8AB6A9 51%, var(--light-color) 100%);
+    background-image: linear-gradient(to right, #508068 0%, #8AB6A9 51%, #508068 100%);
     margin: 1rem;
     padding: 10px 40px;
     background-size: 200% auto;
@@ -102,7 +103,7 @@ input.auth-input,
 .form-button:hover {
     background-position: top center;
     color: #fff;
-    box-shadow: 2px 3px 5px var(--light-color);
+    box-shadow: 2px 3px 5px #508068;
     text-decoration: none;
 }
 
@@ -144,7 +145,7 @@ input[type="file"] {
 
 .label-image {
     cursor: pointer;
-    color: var(--extralight-color);
+    color: #8AB6A9;
     font-weight: bold;
 }
 
@@ -160,6 +161,7 @@ input[type="file"] {
 /* ================================================= RADIO RATING CHECKBOX */
 
 .rating {
+    /* margin: auto; */
     max-width: 14em;
 }
 
@@ -186,14 +188,14 @@ input[type="file"] {
 }
 
 .rating>input:checked~label {
-    /* when selected and not hover  */
+    /* une fois checker et non survolé  */
     color: rgb(218, 215, 32);
     text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
 }
 
 .rating:not(:checked)>label:hover,
 .rating:not(:checked)>label:hover~label {
-    /* on hover */
+    /* lorske survolé */
     color: rgb(228, 224, 27);
     text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
 }
@@ -203,13 +205,13 @@ input[type="file"] {
 .rating>input:checked~label:hover,
 .rating>input:checked~label:hover~label,
 .rating>label:hover~input:checked~label {
-    /* when selected and hover */
+    /* lorske cheker et encore survolé */
     color: rgb(228, 224, 27);
     text-shadow: 1px 1px rgb(118, 116, 16), 2px 2px rgb(125, 124, 17), .1em .1em .2em rgba(0, 0, 0, .5);
 }
 
 .rating>label:active {
-    /* on click */
+    /* mouvement au clik sur l' étoile */
     position: relative;
     top: 2px;
     left: 2px;

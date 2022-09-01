@@ -1,33 +1,65 @@
-{% extends 'index.html' %}
+{% load litreview_extras %}
 {% load static %}
-{% block content %}
+{% load avatar_tags %}
+{% load tz %}
 
-<main>
-    <article id="article_container">
-        <form class="form" method="post" enctype="multipart/form-data">
-            <header class="form-header">
-                <div class="form-logo"></div>
-                <h2 class="form-title">Modifier votre demande</h2>
-            </header>
-            {% if form.errors %}
-            <p class="error">{{ form.errors }}</p>
-            {% endif %}
-            <div class="form-fields">
-                <div class="form-input">
-                    {{ form.title }}
-                </div>
-                <div class="form-input">
-                    {{ form.description}}
-                </div>
-                <div class="form-image">
-                    <img class="form-icon__img" src="{% static 'image1.svg' %}" alt="icône d'utilisateur" />
-                    <label for="id_image" class="label-image">Modifier votre image</label>
-                    <div class="django-upload">{{ form.image }}</div>
-                </div>
-                {% csrf_token %}
-                <button class="form-button" type="submit">Envoyer</button>
-        </form>
-    </article>
-</main>
+<article class="card">
+    <header class="card-header">
+        {% if ticket.image == '' %}
+        <img src="{% static 'default.jpg' %}" alt="couverture de livre">
+        {% else %}
+        <img src="{{ticket.image.url}}" alt="couverture de livre" loading="lazy">
+        {% endif %}
+    </header>
+    <section class="card-content">
+        <h3>{{ticket.title|lower|capfirst}}</h3>
+        {% with text=ticket.description %}
+        {% if text|wordcount > 30 %}
+        <div class="half-content">{{text|safe|linebreaks|truncatewords:10}}
+            <button onclick="showHide()" class="show-hide-btn">
+                <br>
+                Read more
+            </button>
+        </div>
+        <div class="full-content">{{ text|safe|linebreaks }}
+            <button onclick="showHide()" class="show-hide-btn">
+                Read less
+            </button>
+        </div>
+        {% else %}
+        <p>{{ text|safe|linebreaks }}</p>
+        {% endif %}
+        {% endwith %}
+    </section>
+    {% if request.resolver_match.url_name != "response_ticket" %}
+    <footer class="card-footer">
+        <div class="author">
+            {% avatar user class="avatar" id="user_avatar" %}
+            <p>{% get_poster_display ticket.user %} demandé une critique</p>
+        </div>
+        {% timezone "Europe/Paris" %}
+        <date>{{ ticket.time_created|get_posted_at_display }}</date>
+        {% endtimezone %}
+    </footer>
+    {% if request.resolver_match.url_name == "home" and not ticket.has_review %}
+    <div class="buttons-wrapper">
+        <button type="button" class="form-button"><a href="{% url 'response_ticket' ticket.id %}">
+                Répondre</a></button>
+    </div>
+    {% endif %}
+    {% if request.resolver_match.url_name == "posts" %}
+    <div class="buttons-wrapper">
+        <button type="button" class="form-button">
+            <a href="{% url 'edit_ticket' ticket.id %}">Modifier
+            </a>
+        </button>
+        <button type="button" class="form-button">
+            <a href="{% url 'delete_ticket' ticket.id %}">Supprimer
+            </a>
+        </button>
+    </div>
+    {% endif %}
+    {% else %}
 
-{% endblock content %}
+    {% endif %}
+</article>

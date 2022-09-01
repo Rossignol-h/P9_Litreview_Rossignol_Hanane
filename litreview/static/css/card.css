@@ -12,7 +12,7 @@
     background: url('../swirl_pattern.webp') left top repeat;
     display: grid;
     grid-template-columns: 200px 200px;
-    grid-template-rows: minmax(300px, max-content) 80px 80px;
+    grid-template-rows: minmax(300px, auto) fit-content(80px) fit-content(80px);
     margin: 50px;
     box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
@@ -29,6 +29,7 @@
 .card-header {
     grid-column: 1/2;
     margin: 10px;
+
 }
 
 .card-header img {
@@ -62,7 +63,7 @@
 .card-content h3 {
     text-align: center;
     text-transform: uppercase;
-    color: var(--contrast-color);
+    color: #c21e56;
     margin: 1.5rem 0 0.5rem 0;
 }
 
@@ -76,7 +77,7 @@
 }
 
 .ticket_title {
-    color: #e40d0d;
+    color: #1e2f24;
     font-size: 1rem;
 }
 
@@ -117,7 +118,7 @@
 }
 
 .card-footer__review {
-    background-color: var(--extralight-color);
+    background-color: #8AB6A9;
     padding: 30px 20px;
     border-radius: 0px 0px 10px 10px;
 }
@@ -173,7 +174,7 @@ date {
     max-height: max-content;
     box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    background-color: var(--medium-color);
+    background-color: #445C4C;
     opacity: 0;
     animation: slide-in-bottom 1s ease-out forwards;
 }
@@ -288,7 +289,7 @@ date {
 
 .show-hide-btn {
     border-radius: 8px;
-    color: var(--contrast-color);
+    color: #c21e56;
     line-height: 0;
     width: 70px;
     display: inline-flex;
@@ -320,7 +321,7 @@ date {
 }
 
 .delete-p {
-    color: var(--contrast-color);
+    color: #c21e56;
     font-size: 1.2rem;
     text-align: center;
     grid-row: 2/3;

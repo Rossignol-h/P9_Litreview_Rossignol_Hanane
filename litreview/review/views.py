@@ -43,7 +43,7 @@ class EditReview(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     success_url = reverse_lazy('posts')
-    template_name = 'review/edit.html'
+    template_name = 'review/update.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

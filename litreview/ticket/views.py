@@ -28,7 +28,7 @@ class EditTicket(LoginRequiredMixin, UpdateView):
     model = Ticket
     form_class = TicketForm
     success_url = reverse_lazy('posts')
-    template_name = 'ticket/edit.html'
+    template_name = 'ticket/update.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
