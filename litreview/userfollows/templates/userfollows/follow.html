@@ -1,82 +1,96 @@
 {% extends "index.html" %}
 {% load avatar_tags %}
 {% load static %}
-
 {% block content %}
 
 <!-- AJOUTER UN ABONNEMENT -->
-<main class="follow-container">
-    <article class="card card-follow">
-        <header class="card-header">
+<main id="article_container">
+    <article class="card-follow">
+        <header class="card-follow__header">
             <img src="{% static 'follow-who.png' %}" alt="">
-            <span class="type follow">AJOUTER UN ABONNEMENT</span>
+            <span class="type type__follow">AJOUTER UN ABONNEMENT</span>
         </header>
         <form method="post" novalidate>
-            {% csrf_token %}
             {% if form.errors %}
-            {% for field in form %}
-            {% for error in field.errors %}
-            <h3>
-                <strong>{{ error|escape }}</strong>
-            </h3>
-            {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-            <h3>
-                <strong>{{ error|escape }}</strong>
-            </h3>
-            {% endfor %}
+            <div class="error_container">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p class="error">{{ error|escape }}</p>
+                {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                <p class="error">{{ error|escape }}</p>
+                {% endfor %}
+            </div>
             {% endif %}
             <div class="follow-fields">
-                <input type="text" name="follower" placeholder="Nom d&#x27;utilisateur" maxlength="200" required
-                    id="id_follower">
-                <button class="follow-button" type="submit"><img src="{% static 'add-user.svg' %}"
-                        alt="icône d'utilisateur" /></button>
+                <div class="form-input follow-input">
+                    <input type="text" name="follower" placeholder="Entrer le nom d&#x27;utilisateur" maxlength="20"
+                        required id="id_follower">
+                </div>
+                {% csrf_token %}
+                <button class="follow-button" type="submit">
+                    <img src="{% static 'add-user.svg' %}" alt="icône d'utilisateur" />
+                </button>
             </div>
         </form>
     </article>
 
     <!-- ABONNEMENTS -->
-    <article class="card card-follow">
-        <header class="card-header">
+    <article class="card-follow">
+        <header class="card-follow__header">
             <img src="{% static 'follow.png' %}" alt="femme qui prend un livre">
-            <span class="type follow">PERSONNES QUE VOUS SUIVEZ</span>
+            <span class="type type__follow">PERSONNES QUE VOUS SUIVEZ</span>
         </header>
-        <section class="card-content">
+        <section class="card-follow__content">
             {% if follow_user|length_is:"0" %}
-            <p>Vous ne suivez personne pour le moment.</p>
+            <p class="empty">Vous ne suivez personne pour le moment.</p>
             {% else %}
             {% for follow in follow_user %}
             <ul class="card-content__ul">
-                {% avatar follow.followed_user class="avatar follow_avatar" id="user_avatar" %}
-                <li>{{ follow.followed_user }}</li>
-                <button class="follow-button" type="button">
+                <div class="follow_style">
+                    {% avatar follow.followed_user class="avatar follow_avatar" id="user_avatar" %}
+                    <li>{{ follow.followed_user }}</li>
+                </div>
 
-                    <a href="{% url 'unfollow' follow.id %}"><img src="{% static 'delete-user.svg' %}"></a>
+                <button class="follow-button" type="submit">
+                    <a href="{% url 'unfollow' follow.id %}">
+                        <img src="{% static 'delete-user.svg' %}" alt="icône d'utilisateur" />
+                    </a>
                 </button>
+
+                {% comment %} <button class="form-button" type="button">
+                    <a href="{% url 'unfollow' follow.id %}">
+                        <img src="{% static 'delete-user.svg' %}">
+                        s</a>
+                </button> {% endcomment %}
             </ul>
             {% endfor %}
             {% endif %}
         </section>
     </article>
+
     <!-- FOLLOWERS -->
-    <article class="card card-follow">
-        <header class="card-header">
+    <article class="card-follow">
+        <header class="card-follow__header">
             <img src="{% static 'followers.png' %}" alt="chemin de livre dans une forêt">
-            <span class="type follow">PERSONNES QUI VOUS SUIVENT</span>
+            <span class="type type__follow">PERSONNES QUI VOUS SUIVENT</span>
         </header>
-        <section class="card-content">
-            {% if followers|length_is:"0" %}
-            <p>Vous n'êtes suivi par personne pour le moment.</p>
+        <section class="card-follow__content">
+            {% if followed_by|length_is:"0" %}
+            <p class="empty">Vous n'êtes suivi par personne pour le moment.</p>
             {% else %}
             {% for follower in followed_by %}
-            <ul class="card-content__ul">
-                {% avatar follower.user class="avatar follow_avatar" id="user_avatar" %}
-                <li>{{follower.user}}</li>
+            <ul>
+                <div class="follow_style">
+                    {% avatar follower.user class="avatar follow_avatar" id="user_avatar" %}
+                    <li>{{follower.user}}</li>
+                </div>
             </ul>
             {% endfor %}
             {% endif %}
         </section>
     </article>
 </main>
+
 {% endblock %}

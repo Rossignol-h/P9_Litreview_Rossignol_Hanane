@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'authentication',
     'avatar',
-    'flux',
+    'feed',
     'post',
     'userfollows',
     'review',

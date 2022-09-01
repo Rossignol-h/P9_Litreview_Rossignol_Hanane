@@ -1,13 +1,16 @@
 {% extends 'index.html' %}
 {% block content %}
 
-<main id="article_container">
-    <article>
-        <form class="custom-form" method="post">
-            <h2>Êtes-vous sûr(e) de vouloir vous désabonner de {{ object.followed_user }} ?</h2>
-            {% csrf_token %}
-            <button class="button" type="submit">Confirmer</button>
-            <button class="button" type="reset"><a href="{% url 'follow' %}">Annuler</a></button>
+<main>
+    <article id="article_container">
+        <form class="card delete" method="post">
+            <h2 class="delete-title">Êtes-vous sûr(e) de vouloir vous désabonner de</h2>
+            <p class="delete-p"> {{ object.followed_user }} ?</p>
+            <div class="buttons-wrapper">
+                {% csrf_token %}
+                <button class="form-button delete-btn" type="submit">Confirmer</button>
+                <a class="form-button delete-btn" role="button" type="reset" href="{% url 'follow' %}">Annuler</a>
+            </div>
         </form>
     </article>
 </main>
