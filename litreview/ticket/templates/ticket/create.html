@@ -1,15 +1,39 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
 
 <main>
     <article id="article_container">
         <form class="form" method="post" enctype="multipart/form-data">
-            <h2 class="form-title">Créer un ticket</h2>
-            <div class="form-fields">
-                {{ form }}
-                {% csrf_token %}
-                <button class="form-button" type="submit">Envoyer</button>
-            </div>
+            <header class="form-header">
+                <div class="form-logo"></div>
+                <h2 class="form-title">Créer un ticket</h2>
+            </header>
+
+            {% if form.errors %}
+            <div class="error_container">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p class="error">{{ error|escape }}</p>
+                {% endfor %}
+                {% endfor %}
+                {% endif %}
+
+                <div class="form-fields">
+                    <div class="form-input">
+                        {{ form.title }}
+                    </div>
+                    <div class="form-input">
+                        {{ form.description}}
+                    </div>
+                    <div class="form-image">
+                        <img class="form-icon__img" src="{% static 'image1.svg' %}" alt="icône d'utilisateur" />
+                        <label for="id_image" class="label-image">Choisir une image
+                            {{ form.image }}</label>
+                    </div>
+                    {% csrf_token %}
+                    <button class="form-button" type="submit">Envoyer</button>
+                </div>
         </form>
     </article>
 </main>

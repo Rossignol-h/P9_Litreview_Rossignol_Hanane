@@ -1,49 +1,33 @@
-{% load litreview_extras %}
-{% load avatar_tags %}
+{% extends 'index.html' %}
 {% load static %}
-{% load tz %}
+{% block content %}
 
-<article class="card">
-    <header class="card-header">
-        {% if ticket.image == '' %}
-        <img src="{% static 'default.jpg' %}" alt="couverture de livre">
-        {% else %}
-        <img src="{{ticket.image.url}}" alt="couverture de livre" loading="lazy">
-        {% endif %}
-    </header>
+<main>
+    <article id="article_container">
+        <form class="form" method="post" enctype="multipart/form-data">
+            <header class="form-header">
+                <div class="form-logo"></div>
+                <h2 class="form-title">Modifier votre demande</h2>
+            </header>
+            {% if form.errors %}
+            <p class="error">{{ form.errors }}</p>
+            {% endif %}
+            <div class="form-fields">
+                <div class="form-input">
+                    {{ form.title }}
+                </div>
+                <div class="form-input">
+                    {{ form.description}}
+                </div>
+                <div class="form-image">
+                    <img class="form-icon__img" src="{% static 'image1.svg' %}" alt="icône d'utilisateur" />
+                    <label for="id_image" class="label-image">Modifier votre image</label>
+                    <div class="django-upload">{{ form.image }}</div>
+                </div>
+                {% csrf_token %}
+                <button class="form-button" type="submit">Envoyer</button>
+        </form>
+    </article>
+</main>
 
-    <section class="card-content">
-        <span class="type">ticket</span>
-        <h3>{{ticket.title}}</h3>
-        <p>{{ticket.description}}</p>
-    </section>
-
-    <footer class="card-footer">
-        <div class="author">
-            {% avatar user class="avatar" id="user_avatar" %}
-            <p>{% get_poster_display ticket.user %} demandé une critique</p>
-        </div>
-        {% timezone "Europe/Paris" %}
-        <date>{{ ticket.time_created|get_posted_at_display }}</date>
-        {% endtimezone %}
-    </footer>
-
-    {% if home_page and not ticket.has_review %}
-    <div>
-        <button type="button" class="button">
-            <a href="{% url 'response_ticket' ticket.id %}">
-                Créer une critique
-            </a>
-        </button>
-    </div>
-    {% endif %}
-
-    {% if request.resolver_match.url_name == "posts" %}
-    <div class="buttons-wrapper">
-        <button type="button" class="button"><a href="{% url 'edit_ticket' ticket.id %}">
-                Modifier </a></button>
-        <button type="button" class="button"><a href="{% url 'delete_ticket' ticket.id %}">
-                Supprimer </a></button>
-    </div>
-    {% endif %}
-</article>
+{% endblock content %}

@@ -1,9 +1,9 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from PIL import Image
 
-
 class Ticket(models.Model):
+    """ Model for managing a ticket """
 
     title = models.CharField(max_length=128, verbose_name='Titre')
     description = models.TextField(
@@ -14,8 +14,7 @@ class Ticket(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     has_review = models.BooleanField(default=False)
-
-    IMAGE_MAX_SIZE = (700, 700)
+    IMAGE_MAX_SIZE = (600, 600)
 
     def resize_image(self):
         image = Image.open(self.image)

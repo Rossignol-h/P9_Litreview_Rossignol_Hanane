@@ -3,15 +3,13 @@
 
 <main>
     <article id="article_container">
-        <form class="form" method="post">
-            <h2 class="form-title">Supprimer votre ticket</h2>
-            <div class="form-fields">
-                <p>Voulez vous vraiment supprimer ce ticket ?
-                    {{ object.title }}
-                </p>
+        <form class="card delete" method="post">
+            <h2 class="delete-title">Confirmez vous la suppression du ticket ?</h2>
+            <p class="delete-p">{{ object.title }}</p>
+            <div class="buttons-wrapper">
                 {% csrf_token %}
-                <button class="form-button" type="submit">Confirmer</button>
-                <a class="form-button" role="button" href="{% url 'posts' %}">Annuler</a>
+                <button class="form-button delete-btn" type="submit">Confirmer</button>
+                <a class="form-button delete-btn" role="button" href="{% url 'posts' %}">Annuler</a>
             </div>
         </form>
     </article>

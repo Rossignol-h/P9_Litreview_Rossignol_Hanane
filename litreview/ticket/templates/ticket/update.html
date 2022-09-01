@@ -2,21 +2,32 @@
 {% load static %}
 {% block content %}
 
-
-<article id="article_container">
-    <form class="form" method="post" enctype="multipart/form-data">
-        <header class="form-header">
-            <div class="form-logo"></div>
-            <h2 class="form-title">Modifier votre demande</h2>
-        </header>
-        <main>
+<main>
+    <article id="article_container">
+        <form class="form" method="post" enctype="multipart/form-data">
+            <header class="form-header">
+                <div class="form-logo"></div>
+                <h2 class="form-title">Modifier votre demande</h2>
+            </header>
+            {% if form.errors %}
+            <p class="error">{{ form.errors }}</p>
+            {% endif %}
             <div class="form-fields">
-                {{ form }}
+                <div class="form-input">
+                    {{ form.title }}
+                </div>
+                <div class="form-input">
+                    {{ form.description}}
+                </div>
+                <div class="form-image">
+                    <img class="form-icon__img" src="{% static 'image1.svg' %}" alt="icône d'utilisateur" />
+                    <label for="id_image" class="label-image">Modifier votre image</label>
+                    <div class="django-upload">{{ form.image }}</div>
+                </div>
                 {% csrf_token %}
-                <button class="form-button" type="submit">Modifier</button>
-            </div>
-        </main>
-    </form>
-</article>
+                <button class="form-button" type="submit">Envoyer</button>
+        </form>
+    </article>
+</main>
 
 {% endblock content %}
