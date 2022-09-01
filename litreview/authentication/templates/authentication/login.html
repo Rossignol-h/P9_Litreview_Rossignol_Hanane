@@ -1,14 +1,33 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<main id="form-container">
-    <h2>Connexion</h2>
-    <form class="custom-form" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button class="button" type="submit">Se connecter</button>
-        <p>Pas encore de compte ?</p>
-        <a class="form-link" href="{% url 'signup' %}">S'inscrire</a>
+
+<article id="form-container">
+    <form class="form auth-form" method="post">
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Connexion</h2>
+        </header>
+        <main class="form-fields auth-fields">
+            <div class="form-input">
+                <img class="form-icon" src="{% static 'username.svg' %}" alt="icône d'utilisateur" />
+                <input class="auth-input" autocomplete=False autofocus=False placeholder="Identifiant" name="username"
+                    value="" />
+            </div>
+            <div class="form-input">
+                <img class="form-icon" src="{% static 'password.svg' %}" alt="icône de cadenas" />
+                <input class="auth-input" type="password" autocomplete=False autofocus=False placeholder="Mot de passe"
+                    name="password" value="" />
+            </div>
+            </div>
+            {% csrf_token %}
+            <button class="form-button" type="submit">Se connecter</button>
+        </main>
+        <footer class="form-footer">
+            <p class="form-link">Pas encore de compte ?</p>
+            <a class="form-link" href="{% url 'signup' %}">S'inscrire</a>
+        </footer>
     </form>
-</main>
+</article>
+
 {% endblock content %}

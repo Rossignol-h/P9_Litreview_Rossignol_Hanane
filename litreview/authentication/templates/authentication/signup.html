@@ -1,19 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load i18n avatar_tags %}
 {% block content %}
 
-<main id="form-container">
-    <h2>Rejoignez nous ! </h2>
-
-    <form class="custom-form" method="post">
-        {% if form.errors %}
-        {{ form.errors }}
-        {% endif %}
-
-        {{ form }}
-        {% csrf_token %}
-        <button class="button" type="submit">Inscription</button>
-        <p>Vous avez déjà un compte ?</p>
-        <a class="form-link" href="{% url 'login' %}">Se connecter</a>
+<article id="form-container">
+    <form class="form auth-form" method="post">
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Rejoignez nous !</h2>
+        </header>
+        <main class="form-fields auth-fields">
+            {% if form.errors %}
+            {{ form.errors }}
+            {% endif %}
+            <div class="form-input">
+                <img class="form-icon" src="{% static 'username.svg' %}" alt="icône d'utilisateur" />
+                {{ form.username }}
+            </div>
+            <div class="form-input">
+                <img class="form-icon" src="{% static 'password.svg' %}" alt="icône d'un cadenas" />
+                <input class="auth-input" type="password" placeholder="Mot de passe" name="password1"
+                    autocomplete="new-password" required id="id_password1">
+            </div>
+            <div class="form-input">
+                <img class="form-icon" src="{% static 'password.svg' %}" alt="icône d'un cadenas" />
+                <input class="auth-input" type="password" name="password2" placeholder="Confirmer mot de passe"
+                    autocomplete="new-password" required id="id_password2">
+            </div>
+            {% csrf_token %}
+            <button class="form-button" type="submit">Inscription</button>
+        </main>
+        <footer class="form-footer">
+            <p class="form-link">Vous avez déjà un compte ?</p>
+            <a class="form-link" href="{% url 'login' %}">Se connecter</a>
+        </footer>
     </form>
-</main>
+</article>
+
 {% endblock content %}

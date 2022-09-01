@@ -60,8 +60,12 @@ input {
     outline: none;
     background: none;
     font-size: 1.1rem;
-    padding: 10px 5px;
+    padding: 10px 15px;
     transition: all 0.2s ease-in-out;
+}
+
+fieldset {
+    border: 0;
 }
 
 /* for delete all span added automatically by Django in forms */
