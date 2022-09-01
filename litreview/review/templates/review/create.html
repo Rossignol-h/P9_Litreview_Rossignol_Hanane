@@ -1,15 +1,60 @@
 {% extends 'index.html' %}
+{% load litreview_extras %}
+{% load static %}
 {% block content %}
 
-<div id="article_container">
-    <h2>Créer votre critique</h2>
-    <form class="custom-form" method="post" enctype="multipart/form-data">
-        {{ forms.form_ticket }}
-        <h3>Critique</h3>
-        {{ forms.form_review }}
+<article id="article_container">
+    <form class="form" method="post" enctype="multipart/form-data">
+
+        {% comment %} TICKET SECTION {% endcomment %}
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Sujet de votre critique</h2>
+        </header>
+        {% if form.errors %}
+        <p class="error">{{ form.errors }}</p>
+        {% endif %}
+        <div class="form-input">
+            {{ forms.form_ticket.title }}
+        </div>
+        <div class="form-input">
+            {{ forms.form_ticket.description}}
+        </div>
+        <div class="form-image">
+            <img class="form-icon__img" src="{% static 'image1.svg' %}" alt="icône" />
+            <label for="id_image" class="label-image">Choisir une image
+                {{ forms.form_ticket.image }}
+            </label>
+        </div>
+        <hr>
+
+        {% comment %} REVIEW SECTION {% endcomment %}
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Votre critique</h2>
+        </header>
+        <div class="form-input">
+            {{ forms.form_review.headline }}
+        </div>
+        <div class="form-input">
+            {{ forms.form_review.body}}
+        </div>
+        <div class="rating">
+            <legend>Note : </legend>
+            <input type="radio" name="rating" value="5" required id="id_rating_4">
+            <label for="id_rating_4"></label>
+            <input type="radio" name="rating" value="4" required id="id_rating_3">
+            <label for="id_rating_3"></label>
+            <input type="radio" name="rating" value="3" required id="id_rating_2">
+            <label for="id_rating_2"></label>
+            <input type="radio" name="rating" value="2" required id="id_rating_1">
+            <label for="id_rating_1"></label>
+            <input type="radio" name="rating" value="1" required id="id_rating_0">
+            <label for="id_rating_0"></label>
+        </div>
         {% csrf_token %}
-        <button class="button" type="submit">Envoyer</button>
+        <button class="form-button" type="submit">Envoyer</button>
     </form>
-</div>
+</article>
 
 {% endblock content %}

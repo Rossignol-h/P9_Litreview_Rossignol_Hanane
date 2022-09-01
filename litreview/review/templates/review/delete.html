@@ -1,16 +1,16 @@
 {% extends 'index.html' %}
 {% block content %}
 
-<main id="article_container">
-    <article>
-        <form class="custom-form" method="post">
-            <h2>Supprimer votre critique</h2>
-            <p>Supprimer cette critique ?
-                {{ object.title }}
-            </p>
-            {% csrf_token %}
-            <button class="button" type="submit">Confirmer</button>
-            <a class="button" role="button" href="{% url 'posts' %}">Annuler</a>
+<main>
+    <article id="article_container">
+        <form class="card delete" method="post">
+            <h2 class="delete-title">Confirmez vous la suppression de votre critique ?</h2>
+            <p class="delete-p">{{ object.headline }}</p>
+            <div class="buttons-wrapper">
+                {% csrf_token %}
+                <button class="form-button delete-btn" type="submit">Confirmer</button>
+                <a class="form-button delete-btn" role="button" href="{% url 'posts' %}">Annuler</a>
+            </div>
         </form>
     </article>
 </main>

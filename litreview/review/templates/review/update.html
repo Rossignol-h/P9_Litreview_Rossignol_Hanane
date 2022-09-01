@@ -2,29 +2,43 @@
 {% load static %}
 {% block content %}
 
-<article id="article_container">
-    <form class="form" method="post" enctype="multipart/form-data">
-        <header class="form-header">
-            <div class="form-logo"></div>
-            <h2 class="form-title">Modifier votre critique</h2>
-        </header>
-
-        <main>
-            <div class="neumorph">
-                <input class="form-input" type="text" name="headline" value="{{ review.headline }}" maxlength="128"
-                    required id="id_headline">
+<main>
+    <article id="article_container">
+        <form class="form" method="post" enctype="multipart/form-data">
+            <header class="form-header">
+                <div class="form-logo"></div>
+                <h2 class="form-title">Modifier votre critique</h2>
+            </header>
+            {% if form.errors %}
+            {% for error in form.errors %}
+            <p class="error">{{ error}}</p>
+            {% endfor %}
+            {% endif %}
+            <div class="form-fields">
+                <div class="form-input">
+                    {{ form.headline }}
+                </div>
+                <div class="form-input">
+                    {{ form.body}}
+                </div>
+                <fieldset class="rating">
+                    <legend>Veuillez noter votre critique : </legend>
+                    <input type="radio" name="rating" value="5" id="id_rating_4">
+                    <label for="id_rating_4"></label>
+                    <input type="radio" name="rating" value="4" id="id_rating_3">
+                    <label for="id_rating_3"></label>
+                    <input type="radio" name="rating" value="3" id="id_rating_2">
+                    <label for="id_rating_2"></label>
+                    <input type="radio" name="rating" value="2" id="id_rating_1">
+                    <label for="id_rating_1"></label>
+                    <input type="radio" name="rating" value="1" id="id_rating_0">
+                    <label for="id_rating_0"></label>
+                </fieldset>
+                {% csrf_token %}
+                <button class="form-button" type="submit">Envoyer</button>
             </div>
-            <div class="neumorph">
-                <textarea class="form-textarea" name="body" cols="40" rows="10" maxlength="8192" id="id_body">
-                        {{ review.body }}</textarea>
-            </div>
-            <div>
-                {{ form.rating }}
-            </div>
-            {% csrf_token %}
-            <button class="form-button" type="submit">Modifier</button>
-        </main>
-    </form>
-</article>
+        </form>
+    </article>
+</main>
 
 {% endblock content %}

@@ -5,6 +5,7 @@ from ticket.models import Ticket
 
 
 class Review(models.Model):
+    """ Model for managing a review """
 
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(

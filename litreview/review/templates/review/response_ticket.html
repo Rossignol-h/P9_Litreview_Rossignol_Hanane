@@ -1,18 +1,45 @@
 {% extends 'index.html' %}
+{% load litreview_extras %}
 {% block content %}
 
-<div id="article_container">
-    <h2> Vous êtes en train de poster en réponse à {{ticket.user}} </h2>
-    <div class="response_wrapper">
+<main id="article_container">
+    <h2> {% get_response_user ticket.user %} </h2>
+    {% if form.errors %}
+    <p class="error">{{ form.errors }}</p>
+    {% endif %}
+    <article class="response_wrapper">
         {% include 'ticket/ticket_snippet.html' %}
-        <form class="custom-form" method="post">
-            <h3>Critique</h3>
-            {{ form }}
+        <header class="form-header">
+            <div class="form-logo"></div>
+            <h2 class="form-title">Votre critique</h2>
+        </header>
+        <form class="response_form" method="post">
+            <div class="form-input">
+                {{ form.headline }}
+            </div>
+            <div class="form-input">
+                {{ form.body}}
+            </div>
+            <div class="rating">
+                <legend>Note : </legend>
+                <input type="radio" name="rating" value="5" required id="id_rating_4">
+                <label for="id_rating_4"></label>
+                <input type="radio" name="rating" value="4" required id="id_rating_3">
+                <label for="id_rating_3"></label>
+                <input type="radio" name="rating" value="3" required id="id_rating_2">
+                <label for="id_rating_2"></label>
+                <input type="radio" name="rating" value="2" required id="id_rating_1">
+                <label for="id_rating_1"></label>
+                <input type="radio" name="rating" value="1" required id="id_rating_0">
+                <label for="id_rating_0"></label>
+            </div>
             {% csrf_token %}
-            <button class="button" type="submit">Envoyer</button>
-            <a class="button" role="button" href="{% url 'home' %}">Annuler</a>
+            <div class="buttons_wrapper">
+                <button class="form-button" type="submit">Envoyer</button>
+                <a class="form-button" role="button" href="{% url 'home' %}">Annuler</a>
+            </div>
         </form>
-    </div>
-</div>
+    </article>
+</main>
 
 {% endblock content %}

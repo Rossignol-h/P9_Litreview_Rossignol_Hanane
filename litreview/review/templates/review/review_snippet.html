@@ -4,39 +4,62 @@
 
 <article class="card">
     <header class="card-header">
-        <img src="{% static 'follow.png' %}" alt="" aria-hidden="true" loading="lazy">
+        {% with ticket=review.ticket %}
+        {% if ticket.image == '' %}
+        <img src="{% static 'default.jpg' %}" alt="couverture de livre">
+        {% else %}
+        <img src="{{ticket.image.url}}" alt="couverture de livre" loading="lazy">
+        {% endif %}
+        <h2 class="ticket_title">En réponse au ticket {{ticket.title|lower|capfirst}}</h2>
     </header>
-
     <section class="card-content">
-        <div class="author">
-            <span class="type">Critique</span>
-            {% avatar user class="avatar" id="user_avatar" %}
-            <p>{% get_poster_display review.user %} publié une critique</p><br>
-        </div>
-        <date>{{ review.time_created|get_posted_at_display }}</date>
-        <h3>{{ review.headline }}</h3>
-        <p>{{ review.body }}</p>
 
-        {% with ''|center:review.rating as range %}
-        {% for x in range %}
-        <span class='review-star'>&#9733;</span>
-        {% endfor %}
         {% endwith %}
+        <span class="type type__review">Critique</span>
+        <h3 class="card-title">{{ review.headline }}</h3>
+        {% with ''|center:review.rating as range %}
+        <div class="rating-container">
+            {% for x in range %}
+            <span class='review-star'>&#9733;</span>
+            {% endfor %}
+        </div>
+        {% endwith %}
+
+        {% with text=review.body %}
+        {% if text|wordcount > 10 %}
+        <div class="half-content">{{text|safe|linebreaks|truncatewords:10}}
+            <button onclick="showHide()" class="show-hide-btn">
+                <br>Read more
+            </button>
+        </div>
+        <div class="full-content">{{ text|safe|linebreaks }}
+            <button onclick="showHide()" class="show-hide-btn">
+                Read less
+            </button>
+        </div>
+        {% else %}
+        <p>
+            {{ text|safe|linebreaks }}
+        </p>
+        {% endif %}
+        {% endwith %}
+
+
     </section>
 
-    <hr>
-    <footer class="card-footer__review">
-        <h3>En réponse au ticket</h3>
-        {% include "ticket/ticket_snippet.html" with ticket=review.ticket %}
+    <footer class="card-footer">
+        <div class="author">
+            {% avatar user class="avatar" id="user_avatar" %}
+            <p>{% get_poster_display review.user %} publié une critique</p>
+        </div>
+        <date>{{ review.time_created|get_posted_at_display }}</date>
     </footer>
 
     {% if request.resolver_match.url_name == "posts" %}
-    <div>
-        <button type="button" class="button"><a href="{% url 'edit_review' review.id %}">
+    <div class="buttons-wrapper">
+        <button type="button" class="form-button"><a href="{% url 'edit_review' review.id %}">
                 Modifier </a></button>
-    </div>
-    <div>
-        <button type="button" class="button"><a href="{% url 'delete_review' review.id %}">
+        <button type="button" class="form-button"><a href="{% url 'delete_review' review.id %}">
                 Supprimer </a></button>
     </div>
     {% endif %}

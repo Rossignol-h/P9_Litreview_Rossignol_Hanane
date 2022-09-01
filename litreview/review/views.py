@@ -15,9 +15,9 @@ class CreateReview(LoginRequiredMixin, MultiModelFormView):
     """ View to create a review """
 
     form_classes = {
-      'form_ticket' : TicketForm,
-      'form_review' : ReviewForm,
-   }
+    'form_ticket' : TicketForm,
+    'form_review' : ReviewForm,
+    }
     template_name = "review/create.html"
     success_url = reverse_lazy('home')
     login_url = 'login'
@@ -52,6 +52,8 @@ class EditReview(LoginRequiredMixin, UpdateView):
 # ========================================================= RESPONSE TO TICKET
 
 class Response(LoginRequiredMixin, CreateView):
+    """ View to reply to a ticket """
+
     model = Review
     form_class = ReviewForm
     template_name = "review/response_ticket.html"
