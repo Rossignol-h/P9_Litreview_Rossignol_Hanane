@@ -16,7 +16,7 @@ class Home(LoginRequiredMixin, ListView):
         chain and sorted by date on the feed of connected user 
         and users who is following """
 
-        template_name = "flux/home.html"
+        template_name = "feed/home.html"
         context_object_name = 'posts'
         paginate_by = 5
         login_url = 'login'

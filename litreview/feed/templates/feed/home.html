@@ -20,6 +20,10 @@
     {% elif instance|model_type == "Review" %}
     {% include "review/review_snippet.html" with review=instance %}
     {% endif %}
+    {% empty %}
+    <p class="empty">
+        Vous n'avez pas encore de publications.
+    </p>
     {% endfor %}
     {% if is_paginated %}
     {% include 'pagination_snippet.html' %}
