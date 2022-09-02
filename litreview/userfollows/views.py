@@ -54,6 +54,8 @@ class Follow(LoginRequiredMixin, FormView):
         if test2:
             form.add_error(None, " Vous suivez déjà cet utilisateur !")
             return self.form_invalid(form)
+        else:
+            UserFollows.objects.create(user=self.request.user, followed_user=user1)
 
         return super().form_valid(form)
 

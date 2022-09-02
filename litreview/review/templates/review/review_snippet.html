@@ -49,7 +49,7 @@
 
     <footer class="card-footer">
         <div class="author">
-            {% avatar user class="avatar" id="user_avatar" %}
+            {% avatar review.user class="avatar" id="user_avatar" %}
             <p>{% get_poster_display review.user %} publié une critique</p>
         </div>
         <date>{{ review.time_created|get_posted_at_display }}</date>

@@ -34,7 +34,7 @@
     {% if request.resolver_match.url_name != "response_ticket" %}
     <footer class="card-footer">
         <div class="author">
-            {% avatar user class="avatar" id="user_avatar" %}
+            {% avatar ticket.user class="avatar" id="user_avatar" %}
             <p>{% get_poster_display ticket.user %} demandé une critique</p>
         </div>
         {% timezone "Europe/Paris" %}
