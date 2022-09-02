@@ -5,7 +5,7 @@ from .models import Review
 class ReviewForm(forms.ModelForm):
 
     CHOICES = [
-        (1,""), (2,""), (3,""), (4,""), (5,"")
+        (1, ""), (2, ""), (3, ""), (4, ""), (5, "")
     ]
     rating = forms.ChoiceField(label=" Note ", widget=forms.RadioSelect, choices=CHOICES)
 
@@ -15,5 +15,5 @@ class ReviewForm(forms.ModelForm):
         fields = ['headline', 'body', 'rating']
         widgets = {
             'headline': forms.TextInput(attrs={'placeholder': 'Titre', 'label': ''}),
-            'body': forms.Textarea(attrs={'rows':10, 'cols':30, 'placeholder': 'Commentaires'}),
+            'body': forms.Textarea(attrs={'rows': 10, 'cols': 30, 'placeholder': 'Commentaires'}),
         }

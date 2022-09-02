@@ -19,7 +19,4 @@ class Review(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.headline
-
-    def __str__(self):
         return f"{self.ticket.title} - {self.headline}"

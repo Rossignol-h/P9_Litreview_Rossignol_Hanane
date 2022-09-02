@@ -10,5 +10,5 @@ class TicketForm(forms.ModelForm):
         fields = ['title', 'description', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'Titre', 'label': ''}),
-            'description': forms.Textarea(attrs={'rows':10, 'cols':30, 'placeholder': 'Description'}),
+            'description': forms.Textarea(attrs={'rows': 10, 'cols': 30, 'placeholder': 'Description'}),
         }

@@ -62,7 +62,8 @@ htmlcov/
 nosetests.xml 
 coverage.xml 
 *.cover 
-.hypothesis/ 
+.hypothesis/
+flake-report/
 
 # pyenv 
 .python-version 

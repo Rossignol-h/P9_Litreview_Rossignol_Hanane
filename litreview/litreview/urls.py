@@ -7,8 +7,8 @@ from django.urls import path
 # utiliser la vue generique de login
 from django.contrib.auth.views import LoginView
 from authentication.views import SignUpView, logout_view
-from review.views import CreateReview, EditReview, DeleteReview, Response
-from ticket.views import CreateTicket, EditTicket, DeleteTicket
+from review.views import CreateReview, UpdateReview, DeleteReview, Response
+from ticket.views import CreateTicket, UpdateTicket, DeleteTicket
 from userfollows.views import Follow, UnFollow
 from feed.views import Home
 from post.views import Post
@@ -38,9 +38,9 @@ urlpatterns = [
     # ================================================================ POST
 
     path('posts/', Post.as_view(), name='posts'),
-    path('<int:pk>/edit/', EditTicket.as_view(), name='edit_ticket'),
+    path('<int:pk>/edit/', UpdateTicket.as_view(), name='edit_ticket'),
     path('<int:pk>/delete/', DeleteTicket.as_view(), name='delete_ticket'),
-    path('edit_review/<int:pk>/edit/', EditReview.as_view(), name='edit_review'),
+    path('edit_review/<int:pk>/edit/', UpdateReview.as_view(), name='edit_review'),
     path('delete_review/<int:pk>/delete/', DeleteReview.as_view(), name='delete_review'),
 
     # ================================================================ USERFOLLOW

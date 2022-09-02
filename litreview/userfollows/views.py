@@ -9,7 +9,8 @@ from authentication.models import User
 from .models import UserFollows
 from .forms import FollowForm
 
-# ================================================================== FOLLOW 
+# ================================================================== FOLLOW
+
 
 class Follow(LoginRequiredMixin, FormView):
     """ View to follow a user """
@@ -53,13 +54,10 @@ class Follow(LoginRequiredMixin, FormView):
         if test2:
             form.add_error(None, " Vous suivez déjà cet utilisateur !")
             return self.form_invalid(form)
-        else:
-            test3 = UserFollows.objects.create(
-                user=self.request.user, followed_user=user1)
 
         return super().form_valid(form)
 
-# ================================================================== UNFOLLOW 
+# ================================================================== UNFOLLOW
 
 
 class UnFollow(LoginRequiredMixin, DeleteView):

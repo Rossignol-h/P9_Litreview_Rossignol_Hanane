@@ -21,6 +21,7 @@ class SignUpView(SuccessMessageMixin, CreateView):
 
 # =================================================== LOGOUT FUNCTION
 
+
 @login_required
 def logout_view(request):
     """ View for log out a connected user """

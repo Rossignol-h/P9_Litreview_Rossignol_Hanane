@@ -12,28 +12,26 @@ from ticket.models import Ticket
 
 
 class Home(LoginRequiredMixin, ListView):
-        """ Displays all tickets and reviews 
-        chain and sorted by date on the feed of connected user 
+    """ Displays all tickets and reviews
+        chain and sorted by date on the feed of connected user
         and users who is following """
 
-        template_name = "feed/home.html"
-        context_object_name = 'posts'
-        paginate_by = 5
-        login_url = 'login'
+    template_name = "feed/home.html"
+    context_object_name = 'posts'
+    paginate_by = 5
+    login_url = 'login'
 
-        def get_queryset(self):
-            tickets = get_users_viewable_tickets(self.request.user)
-            tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-            reviews = get_users_viewable_reviews(self.request.user)
-            reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    def get_queryset(self):
+        tickets = get_users_viewable_tickets(self.request.user)
+        tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+        reviews = get_users_viewable_reviews(self.request.user)
+        reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
-            posts = sorted(chain(reviews, tickets),
-                        key=lambda post: post.time_created,
-                        reverse=True)
-
-            return posts                                                 
+        posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+        return posts
 
 # ============================================== FUNCTIONS
+
 
 def get_users_subscriptions(user: User) -> List:
     """ retrieves the list of user subscriptions from database """
@@ -50,6 +48,7 @@ def get_users_viewable_reviews(user: User) -> QuerySet:
     reviews = Review.objects.filter(
         Q(user__in=subscriptions) | Q(user=user) | Q(ticket__user=user))
     return reviews
+
 
 def get_users_viewable_tickets(user: User) -> QuerySet:
     """ retrieves the filtered list of tickets from database """

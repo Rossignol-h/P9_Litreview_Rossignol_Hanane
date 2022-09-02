@@ -10,13 +10,14 @@ from ticket.models import Ticket
 
 # ======================================================== CREATE REVIEW
 
+
 # to use "MultiModelFormView" ==> pip install django-multi-form-view six
 class CreateReview(LoginRequiredMixin, MultiModelFormView):
     """ View to create a review """
 
     form_classes = {
-    'form_ticket' : TicketForm,
-    'form_review' : ReviewForm,
+        'form_ticket': TicketForm,
+        'form_review': ReviewForm,
     }
     template_name = "review/create.html"
     success_url = reverse_lazy('home')
@@ -37,7 +38,8 @@ class CreateReview(LoginRequiredMixin, MultiModelFormView):
 
 # ========================================================= EDIT REVIEW
 
-class EditReview(LoginRequiredMixin, UpdateView):
+
+class UpdateReview(LoginRequiredMixin, UpdateView):
     """ View to edit a review """
 
     model = Review
@@ -50,6 +52,7 @@ class EditReview(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 # ========================================================= RESPONSE TO TICKET
+
 
 class Response(LoginRequiredMixin, CreateView):
     """ View to reply to a ticket """
@@ -75,6 +78,7 @@ class Response(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 # ========================================================= DELETE REVIEW
+
 
 class DeleteReview(LoginRequiredMixin, DeleteView):
     """ View to delete a review """

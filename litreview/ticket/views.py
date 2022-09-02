@@ -8,6 +8,7 @@ from .models import Ticket
 
 # ========================================================= CREATE TICKET
 
+
 class CreateTicket(LoginRequiredMixin, generic.CreateView):
     """ View to create a ticket """
 
@@ -22,7 +23,8 @@ class CreateTicket(LoginRequiredMixin, generic.CreateView):
 
 # ========================================================= EDIT TICKET
 
-class EditTicket(LoginRequiredMixin, UpdateView):
+
+class UpdateTicket(LoginRequiredMixin, UpdateView):
     """ View to edit a ticket """
 
     model = Ticket
@@ -35,6 +37,7 @@ class EditTicket(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 # ========================================================= DELETE TICKET
+
 
 class DeleteTicket(LoginRequiredMixin, DeleteView):
     """ View to delete a ticket """

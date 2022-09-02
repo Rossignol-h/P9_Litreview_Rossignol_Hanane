@@ -6,22 +6,21 @@ from itertools import chain
 
 # ======================================================== POSTS MAIN PAGE
 
+
 class Post(LoginRequiredMixin, ListView):
-        """ View for displaying all posts of connected user """
+    """ View for displaying all posts of connected user """
 
-        template_name = "posts/posts.html"
-        context_object_name = 'posts'
-        paginate_by = 5
-        login_url = 'login'
+    template_name = "posts/posts.html"
+    context_object_name = 'posts'
+    paginate_by = 5
+    login_url = 'login'
 
-        def get_queryset(self):
-                """ Method for retrieve all tickets & reviews of connected user 
-                from database """
-                tickets = Ticket.objects.filter(user= self.request.user)
-                reviews = Review.objects.filter(user= self.request.user)
+    def get_queryset(self):
+        """ Method for retrieve all tickets & reviews of connected user
+        from database """
+        tickets = Ticket.objects.filter(user=self.request.user)
+        reviews = Review.objects.filter(user=self.request.user)
 
-                posts = sorted(chain(reviews, tickets),
-                        key=lambda post: post.time_created,
-                        reverse=True)
+        posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
 
-                return posts
+        return posts
