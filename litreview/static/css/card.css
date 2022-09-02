@@ -170,7 +170,7 @@ date {
 
 .card-follow {
     margin: 50px;
-    min-width: 400px;
+    width: 350px;
     max-height: max-content;
     box-shadow: 0 0 13px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
