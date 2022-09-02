@@ -7,6 +7,7 @@
 - A connected user can follow or being followed by others,
 - UX/UI created from scratch, theme was minimalist.
 - Stack used: HTML, CSS,Vanilla JavaScript, and Django.
+- Cleaning code tool : Flake 8.
 - My Python version : 3.10.1
 
 
@@ -67,6 +68,17 @@ Quit the server with CTRL-BREAK. # it will open the app on your default browser
 ```
 
 #### *Note: This website is optimized for Edge, Mozilla Firefox and Chrome*
+
+## Testing 
+
+#### For generate a Flake 8 report :
+```bash
+flake8 --format=html --htmldir=flake-report
+```
+
+#### Now you have in the new generated flake-report folder an index.html file :
+
+open the file index.html in your default browser
 
 ## Author
 
