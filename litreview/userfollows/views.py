@@ -43,7 +43,7 @@ class Follow(LoginRequiredMixin, FormView):
             form.add_error(None, "Vous ne pouvez pas souscrire à vous même !")
             return self.form_invalid(form)
         try:
-            user1 = User.objects.get(username=value.lower())
+            user1 = User.objects.get(username=value)
         except User.DoesNotExist:
             form.add_error(None, "Cet utilisateur n'existe pas !")
             return self.form_invalid(form)
