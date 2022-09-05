@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import CharField, Value, Q
 from django.db.models.query import QuerySet
 from django.views.generic import ListView
+from django.db.models import Q
 from itertools import chain
 from typing import List
 
@@ -23,9 +23,7 @@ class Home(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         tickets = get_users_viewable_tickets(self.request.user)
-        tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
         reviews = get_users_viewable_reviews(self.request.user)
-        reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
 
         posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
         return posts

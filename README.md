@@ -4,7 +4,7 @@
  #### This project is a Web application that :
 - Displays reviews of books and articles,
 - A user can signup login logout,
-- A connected user can follow or being followed by others,
+- A connected user can follow, unflollow or being followed by others,
 - UX/UI created from scratch, theme was minimalist.
 - Stack used: HTML, CSS,Vanilla JavaScript, and Django.
 - Cleaning code tool : Flake 8.
@@ -19,10 +19,10 @@
 git clone https://github.com/Rossignol-h/P9_Litreview_Rossignol_Hanane.git
 ```
 
-#### open your terminal at the root of the app  :
+#### open your terminal at :
 
 ```bash
-cd src
+cd P9_LitReview_Rossignol_Hanane
 ```
 
 #### Create a virtual environment :
@@ -42,15 +42,14 @@ env/bin/activate     # on Mac or Linux
 ```bash
 pip install -r requirements.txt
 ```
+#### open your terminal at the root of the app  :
 
-#### Open a new terminal from the folder litreview :
 ```bash
-cd litreview
+cd app
 ```
 
 #### Create and populate the database :
 ```bash
-python manage.py makemigrations
 python manage.py migrate
 ```
 
@@ -64,10 +63,12 @@ python manage.py runserver
 #### The previous command will automatically generate a link :
 ```bash
 Starting development server at http://127.0.0.1:8000/  # click on this link
-Quit the server with CTRL-BREAK. # it will open the app on your default browser
+# it will open the app on your default browser
 ```
 
-#### *Note: This website is optimized for Edge, Mozilla Firefox and Chrome*
+#### **Note : The database will automatically populate with some users and posts**
+- All the usernames & passwords are in "auth-list.txt" file
+- This website is optimized for Edge, Mozilla Firefox and Chrome
 
 ## Testing 
 

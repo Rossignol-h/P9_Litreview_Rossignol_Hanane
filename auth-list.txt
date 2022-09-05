@@ -1,0 +1,19 @@
+****** PLEASE NOTE THAT THE USERNAME FIELD IS CASE SENSITIVE ********
+
+
+for the Django superuser :
+
+username = admin, password = secret1234
+
+
+
+for regular user:
+
+username = will, password = secret1234
+username = anna, password = secret1234
+username = Karim, password = secret1234
+username = clara, password = secret1234
+username = Edouardo, password = secret1234
+username = Samira, password = secret1234
+username = Jeremy, password = secret1234
+username = Aissata, password = secret1234
