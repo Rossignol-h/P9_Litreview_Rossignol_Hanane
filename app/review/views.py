@@ -1,6 +1,7 @@
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from multi_form_view import MultiModelFormView
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from review.forms import ReviewForm
@@ -86,3 +87,8 @@ class DeleteReview(LoginRequiredMixin, DeleteView):
     model = Review
     success_url = reverse_lazy('posts')
     template_name = 'review/delete.html'
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.ticket.delete()
+        return HttpResponseRedirect(success_url)

@@ -10,7 +10,7 @@ class Ticket(models.Model):
     description = models.TextField(
         max_length=2048, blank=True, verbose_name='Description')
     image = models.ImageField(
-        default="default-cover/default.jpg", null=True, blank=True)
+        default="default-cover/default.webp", null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
