@@ -1,5 +1,6 @@
 from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.http import Http404
@@ -48,3 +49,12 @@ class DeleteTicket(LoginRequiredMixin, DeleteView):
     model = Ticket
     success_url = reverse_lazy('posts')
     template_name = 'ticket/delete.html'
+
+    def form_valid(self, form):
+
+            if self.object.user != self.request.user:
+                raise Http404
+            else :
+                success_url = self.get_success_url()
+                self.object.delete()
+                return HttpResponseRedirect(success_url)

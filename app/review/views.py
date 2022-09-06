@@ -92,6 +92,10 @@ class DeleteReview(LoginRequiredMixin, DeleteView):
     template_name = 'review/delete.html'
 
     def form_valid(self, form):
-        success_url = self.get_success_url()
-        self.object.ticket.delete()
-        return HttpResponseRedirect(success_url)
+
+        if self.object.user != self.request.user:
+            raise Http404
+        else :
+            success_url = self.get_success_url()
+            self.object.ticket.delete()
+            return HttpResponseRedirect(success_url)
