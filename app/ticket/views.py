@@ -2,6 +2,7 @@ from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
+from django.http import Http404
 
 from .forms import TicketForm
 from .models import Ticket
@@ -33,8 +34,10 @@ class UpdateTicket(LoginRequiredMixin, UpdateView):
     template_name = 'ticket/update.html'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        if form.instance.user != self.request.user:
+            raise Http404
+        else :
+            return super().form_valid(form)
 
 # ========================================================= DELETE TICKET
 

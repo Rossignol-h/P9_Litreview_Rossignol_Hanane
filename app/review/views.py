@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from multi_form_view import MultiModelFormView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.http import Http404
 
 from review.forms import ReviewForm
 from ticket.forms import TicketForm
@@ -49,8 +50,10 @@ class UpdateReview(LoginRequiredMixin, UpdateView):
     template_name = 'review/update.html'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        if form.instance.user != self.request.user:
+            raise Http404
+        else :
+            return super().form_valid(form)
 
 # ========================================================= RESPONSE TO TICKET
 
